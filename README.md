@@ -1,6 +1,8 @@
 # ender-3-s1-kilpper
 <h1>Config files and handy things related to 3D printing on a Creality Ender 3 S1 with Klipper firmware</h1>
 
+![My Creality Ender 3 S1](IMG_7378.jpeg "My Creality Ender 3 S1")
+
 I bought Creality's Ender 3 S1 about a month after they came out (around mid 2022) and have been pretty happy with it.  I modded mine to handle more "exotic" materials before the S1 Pro was released and mostly print utility items and the occasional "fun" print.  When Miguel started making a "Professional Firmware" (https://github.com/mriscoc/Ender3V2S1), I was really happy to have extra control of more parameters, and indeed his work is super helpful and worthy of donations.  If you don't need everything Klipper has to offer, and still want to use the stock control/display, I strongly recommend considering his work.  That said, by early 2024, it was hard to ignore the differences between my S1 and Bamboo Labs' A1, P3S and X1C, as well as Creality's K1 series - I knew I wanted to experiment with Klipper to stave off dropping more money on a new printer.
 
 Once you've decided on Klipper, the fastest way to close (some of) that gap is to buy Creality's Sonic Pad for $150 and let it do the hard work, but I already had a Raspberry Pi 3 and 7" touch screen with a stand.  I'm still not able to get the touch screen to work reliably with KlipperScreen, but I have managed to switch to Klipper, Mainsail and a bunch of settings that are working really well for me.  I'll continue to dial these in over time, like getting an accelerometer to tune input shaping, but one of the benefits to a custom route is getting to know your printer, Klipper, and 3D printing much better.  Sure, that's not as much as building your own Voron from scratch, but you get the point!
