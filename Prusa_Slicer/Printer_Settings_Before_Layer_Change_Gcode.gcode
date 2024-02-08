@@ -1,3 +1,4 @@
 ;BEFORE_LAYER_CHANGE
+;[layer_z]
 G92 E0
-;{layer_z}
+BEFORE_LAYER_CHANGE HEIGHT=[layer_z] LAYER=[layer_num]

@@ -1,2 +1,3 @@
 ;AFTER_LAYER_CHANGE
-;{layer_z}
+;[layer_z]
+AFTER_LAYER_CHANGE

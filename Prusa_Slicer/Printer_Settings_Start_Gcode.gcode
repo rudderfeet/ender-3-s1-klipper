@@ -1,18 +1,17 @@
-G90 ; use absolute coordinates
-M83 ; extruder relative mode
-;M104 S150 ; set temporary nozzle temp to prevent oozing during homing
-M140 S{first_layer_bed_temperature[0]} ; set final bed temp
-G4 S30 ; allow partial nozzle warmup
-G28 ; home all axis
-G1 Z10 F240 ; put nozzle 1cm above the bed
-G1 X12.0 Y10 F3000 ; get ready to draw the first line
-M104 S{first_layer_temperature[0]} ; set final nozzle temp
-M190 S{first_layer_bed_temperature[0]} ; wait for bed temp to stabilize
-M109 S{first_layer_temperature[0]} ; wait for nozzle temp to stabilize
-G1 Z0.28 F240           ; place the nozzle close to the bed
-G92 E0
-G1 X12.0 Y140 E10 F1500 ; prime the nozzle forwards
-G1 X12.3 Y140 F5000     ; move over a little
-G92 E0
-G1 X12.3 Y10 E10 F1200  ; prime the nozzle backwards
-G92 E0
+;M190 S0 ; Remove this if autoemit_temperature_commands is off in Prusa Slicer 2.6 and later
+;M109 S0 ; Remove this if autoemit_temperature_commands is off in Prusa Slicer 2.6 and later
+_PRINT_START_PHASE_INIT EXTRUDER={first_layer_temperature[initial_tool]} BED=[first_layer_bed_temperature] MESH_MIN={first_layer_print_min[0]},{first_layer_print_min[1]} MESH_MAX={first_layer_print_max[0]},{first_layer_print_max[1]} LAYERS={total_layer_count} NOZZLE_SIZE={nozzle_diameter[0]}
+; Insert custom gcode here.
+_PRINT_START_PHASE_PREHEAT
+; Insert custom gcode here.
+_PRINT_START_PHASE_PROBING
+; Insert custom gcode here.
+_PRINT_START_PHASE_EXTRUDER
+; Insert custom gcode here.
+Clean_Nozzle
+_PRINT_START_PHASE_PURGE
+
+; This is the place to put slicer purge lines if you haven't set a non-zero
+; variable_start_purge_length to have START_PRINT automatically calculate and 
+; perform the purge (e.g. if using a Mosaic Palette, which requires the slicer
+; to generate the purge).
