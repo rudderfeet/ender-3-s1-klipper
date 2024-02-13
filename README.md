@@ -16,8 +16,8 @@ In this repository, you can see my core Klipper files to compare, contrast, leve
 <b>For reference, my S1 is fairly-well modded:</b>
 - Replaced power supply with a stronger unit since stock couldn't keep up with higher toolhead and bed temps needed for nylon, polycarbonate, ABS, etc.
 - Replaced heatbrake with all metal one from Slice Engineering for higher temps (stock HB has PTFE)
-- Replaced heater and thermister with S1 Pro's units (stock can't get to 300C)
-- Replaced nozzle with 0.4mm hardened steel unit (for carbon-filled nylon filament)
+- Replaced hotend with K1's ceramic unit (stock can't get to 300C)
+- Replaced nozzle with 0.4mm brass for regular filaments, and hardened steel unit for carbon-filled filaments
 - Replaced cooling with 3D-printed PETG manifold and stronger fan (helps with higher speeds to reduce stringing and improve bridging)
 - Added squash balls as feet to help absorb motion ringing and reduce printing noise
 - Replaced spool holder with 3D-printed ball bearing unit - this helps a lot with heavy spools, especially TPU, which can skip in the extruder if it has to pull very hard
@@ -26,8 +26,8 @@ In this repository, you can see my core Klipper files to compare, contrast, leve
 - Added reflectix insulation under the bed for more efficient heating
 - Added a soft enclosure from Amazon and put a rigged a fan with filter on the side to deal with filament fumes
 
-<b>Current Status as of 2/4/2024:</b>
-- Overall, Klipper and Mainsail are working great on my Raspberry Pi 3B - I'm happy with double the stock speeds using PLA, PETG, ABS, ASA, PA and PC without loss of quality or layer adhesion.  I haven't increased TPU speeds because layer adhesion is even more important with flexible materials for functional prints like camping chair feet and protective hardware covers
+<b>Current Status as of 2/14/2024:</b>
+- Overall, Klipper and Mainsail are working great on my Raspberry Pi 3B - I'm happy with roughly double the stock speeds using PLA, PETG, ABS, ASA, PA and PC without loss of quality or layer adhesion.  I haven't increased TPU speeds because layer adhesion is even more important with flexible materials for functional prints like camping chair feet and protective hardware covers
 - The PID tunes of my hotend and bed are working well
 - The tuned pressure advance value is working well
 - The hardware retraction values seems pretty good in combination with pressure advance.  I did both of these calibrations back-to-back a couple times
