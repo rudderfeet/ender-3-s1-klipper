@@ -13,26 +13,27 @@ Are you in a similar boat, er, Benchy?
 
 In this repository are my core Klipper files to compare, contrast, leverage or critique what I'm using.  These may work well for you as-is, or may be a little off for your situation, so it's on your shoulders to use a critical eye and take your time.  I'm doing this mainly to back myself up with version control in case I make a stupid mistake with tuning and have to roll back settings, but it would be great if others are helped as well.
 
-<b>For reference, my S1 is fairly-well modded:</b>
+<b>For reference, my S1 is quite modded:</b>
 - Replaced power supply with a stronger unit since stock couldn't keep up with higher toolhead and bed temps needed for nylon, polycarbonate, ABS, etc.
 - Replaced heatbrake with all metal one from Slice Engineering for higher temps (stock HB has PTFE)
 - Replaced hotend with K1's ceramic unit (stock can't get to 300C) and a 0.4 mm brass nozzle to handle higher flow rates using non-abrasive filaments
-- Set up a second Spring Pro extruder assembly with a 0.6 mm hardened steel nozzle for the (CF) abrasive filaments
-- Replaced cooling with 3D-printed PETG manifold and stronger fan (helps with higher speeds to reduce stringing and improve bridging)
+- Set up a second Sprite Pro extruder assembly with a 0.6 mm hardened steel nozzle for abrasive filaments
+- Installed linear rails on the X and Y axises for rigidity
+- Replaced cooling with a 3D-printed "Taurus" PETG manifold and stronger fan, which helps with higher speeds to reduce stringing and improve bridging
 - Added squash balls as feet to help absorb motion ringing and reduce printing noise
 - Replaced spool holder with 3D-printed ball bearing unit - this helps a lot with heavy spools, especially TPU, which can skip in the extruder if it has to pull very hard
 - Replaced bed material with garolite (aka G10) and glue stick - I really, really like this for everything, and use little binder clips to hold the plate on the bed
 - Added toolhead cable support to reduce twisting stress at the head's base
 - Added reflectix insulation under the bed for more efficient heating
-- Added a soft enclosure from Amazon and put a rigged a fan with filter on the side to deal with filament fumes
+- Replaced the bed springs with elastomer standoffs
+- Added a soft enclosure from Amazon and adapted a rigged a fan with carbon filter on the side to deal with filament fumes
 
-<b>Current Status as of 2/14/2024:</b>
-- Overall, Klipper and Mainsail are working great on my Raspberry Pi 3B - I'm happy with roughly double the stock speeds using PLA, PETG, ABS, ASA, PA and PC without loss of quality or layer adhesion as long as I stay under 150 mm/s with PLA and under 75-100 mm/s with advanced filaments.  I haven't increased TPU speeds because layer adhesion is even more important with flexible materials for functional prints like camping chair feet and protective hardware covers
-- The PID tunes of my hotend and bed are working well
-- The tuned pressure advance value is working well
-- The hardware retraction values seems pretty good in combination with pressure advance.  I did both of these calibrations back-to-back a couple times
-- I acquired a KUSBA accelerometer and calibrated input shaping, eliminating almost every shadow of a ghost
-- Jschuh's extended Klipper macros are great especially for improved bed leveling - see https://github.com/jschuh/klipper-macros.  Note that it's really important to modify your slicer's Machine settings to use his scripts, which is why I have a section of files in the Prusa_Slicer folder
+<b>Current Status as of 3/6/2024:</b>
+- Overall, Klipper and Mainsail are working great on my Raspberry Pi 3B - I'm happy with roughly 3-4x the stock speeds using PLA, PETG, ABS, ASA, PA and PC without loss of quality or layer adhesion as long as I stay under 150 mm/s with PLA and under 75-100 mm/s with advanced filaments.  I haven't increased TPU speeds because layer adhesion is even more important with flexible materials for functional prints like camping chair feet and protective hardware covers
+- The PID tunes of my hotends and bed are working well
+- I acquired a KUSBA accelerometer and calibrated input shaping, eliminating almost every shadow of a ghost, though I need to work through some decel underextrusion
+- The hardware retraction values seems pretty good in combination with pressure advance.  I performed both of these calibrations back-to-back a couple times
+- Jschuh's extended Klipper macros are fantastic, especially for improved bed leveling - see https://github.com/jschuh/klipper-macros.  Note that it's really important to modify your slicer's Machine settings to use his scripts, which is why I have a section of files in the Prusa_Slicer folder
 - My C615 Camera via Crowsnest is working well but could use more tuning
 - Raspberry Pi's 7" touchscreen uses I2C to send finger presses, so you have to use "sudo raspi-config" to enable I2C, but I'm struggling to get mine to display reliably. I've given up on that for now and just use a computer nearby to control my prints
 - Note that my klipper.bin works on my early S1 with a F103 chip.  Do NOT try on a F4 processor!
