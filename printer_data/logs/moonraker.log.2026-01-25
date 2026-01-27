@@ -1,0 +1,297 @@
+-------------------- Log Start | Sun Jan 25 05:10:54 2026 --------------------
+platform: Linux-6.12.47+rpt-rpi-v7-armv7l-with-glibc2.36
+data_path: /home/smccrory/printer_data
+is_default_data_path: False
+config_file: /home/smccrory/printer_data/config/moonraker.conf
+backup_config: /home/smccrory/printer_data/config/.moonraker.conf.bkp
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 3ea322c82223402d9fc6a896dcccb0d4
+unix_socket_path: /home/smccrory/printer_data/comms/moonraker.sock
+structured_logging: False
+software_version: v0.9.3-140-gbac55c6
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/smccrory/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]
+launch_args: /home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/moonraker.py -d /home/smccrory/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/smccrory/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[file_manager]
+enable_object_processing = True
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager klipper-macros]
+type = git_repo
+origin = https://github.com/jschuh/klipper-macros.git
+path = ~/printer_data/config/klipper-macros
+primary_branch = main
+is_system_service = False
+managed_services = klipper
+
+[update_manager mobileraker]
+type = git_repo
+path = ~/mobileraker_companion
+origin = https://github.com/Clon1998/mobileraker_companion.git
+primary_branch = main
+managed_services = mobileraker
+virtualenv = ~/mobileraker-env
+requirements = scripts/mobileraker-requirements.txt
+install_script = scripts/install.sh
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[timelapse]
+output_path = ~/printer_data/timelapse/
+frame_path = /tmp/timelapse/printer
+
+[power basement_lights]
+type = tplink_smartplug
+address = 192.168.4.48
+port = 9999
+off_when_shutdown = False
+on_when_job_queued = True
+locked_while_printing = False
+restart_klipper_when_powered = False
+bound_services = 
+
+#################################################################
+All Configuration Files:
+/home/smccrory/printer_data/config/moonraker.conf
+#################################################################
+Loading Sqlite database provider. Sqlite Version: 3.40.1
+Unsafe Shutdown Count: 14
+
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: armv7l
+  cpu_desc: ARMv7 Processor rev 4 (v7l)
+  serial_number: 4ec05eff
+  hardware_desc: BCM2835
+  model: Raspberry Pi 3 Model B Plus Rev 1.3
+  total_memory: 943124
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SC32G
+  product_revision: 8.0
+  serial_number: ecdf1fc6
+  manufacturer_date: 10/2017
+  capacity: 29.7 GiB
+  total_bytes: 31914983424
+
+***distribution***
+  name: Raspbian GNU/Linux 12 (bookworm)
+  id: raspbian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bookworm
+  release_info: {}
+  kernel_version: 6.12.47+rpt-rpi-v7
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+  mobileraker
+Module libcamera unavailable, import failed
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'network-online.target', 'sysinit.target', '-.mount']
+**After=['-.mount', 'sysinit.target', 'systemd-journald.socket', 'basic.target', 'system.slice', 'network-online.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/smccrory/printer_data/systemd/moonraker.env
+**ExecStart=/home/smccrory/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/smccrory/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=smccrory
+CPU Throttled Flags: ['Previously Temperature Limited']
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target', '-.mount']
+**After=['basic.target', 'sysinit.target', 'system.slice', 'klipper-mcu.service', '-.mount', 'systemd-journald.socket', 'network-online.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/smccrory/printer_data/systemd/klipper.env
+**ExecStart=/home/smccrory/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/smccrory/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=smccrory
+Git Repo moonraker: Warnings detected:
+  Repo has untracked source files: ['moonraker/components/timelapse.py']
+Git Repo klipper: No warnings detected
+Git Repo mainsail-config: No warnings detected
+Git Repo crowsnest: No warnings detected
+Git Repo klipper-macros: No warnings detected
+Git Repo mobileraker: No warnings detected
+Git Repo timelapse: No warnings detected
+Klipper Version: v0.13.0-464-g48f0b3cad
+2026-01-25 00:10:54,201 [websockets.py:on_close()] - Websocket Closed: ID: 1944194288 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 4.20
+2026-01-25 00:49:46,011 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-25 10:51:24,283 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-25 10:51:24,286 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.83ms
+2026-01-25 10:51:24,287 [websockets.py:open()] - Websocket Opened: ID: 1944489200, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 10:51:24,378 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 11:10:37,854 [websockets.py:on_close()] - Websocket Closed: ID: 1944489200 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 3.35
+2026-01-25 11:10:41,789 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.69ms
+2026-01-25 11:10:41,789 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 11:10:41,816 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 11:38:48,597 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: None, Close Reason: None, Pong Time Elapsed: 6.47
+2026-01-25 11:38:50,142 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.47ms
+2026-01-25 11:38:50,142 [websockets.py:open()] - Websocket Opened: ID: 1944488176, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 11:38:50,185 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.27ms
+2026-01-25 11:38:50,186 [websockets.py:open()] - Websocket Opened: ID: 1944818896, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 11:38:50,216 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 11:39:30,275 [websockets.py:write_to_socket()] - Websocket closed while writing: 1944818896
+2026-01-25 11:39:30,392 [websockets.py:write_to_socket()] - Websocket closed while writing: 1944488176
+2026-01-25 11:39:35,152 [websockets.py:on_close()] - Websocket Closed: ID: 1944488176 Close Code: None, Close Reason: None, Pong Time Elapsed: 24.99
+2026-01-25 11:39:35,194 [websockets.py:on_close()] - Websocket Closed: ID: 1944818896 Close Code: None, Close Reason: None, Pong Time Elapsed: 25.00
+2026-01-25 11:44:14,456 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.84ms
+2026-01-25 11:44:14,457 [websockets.py:open()] - Websocket Opened: ID: 1945011568, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 11:44:14,566 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.15ms
+2026-01-25 11:44:14,567 [websockets.py:open()] - Websocket Opened: ID: 1944537744, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 11:44:14,571 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 11:44:14,710 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 11:44:17,707 [websockets.py:on_close()] - Websocket Closed: ID: 1945011568 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 3.25
+2026-01-25 11:44:17,710 [websockets.py:on_close()] - Websocket Closed: ID: 1944537744 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 3.15
+2026-01-25 11:44:21,895 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.24ms
+2026-01-25 11:44:21,896 [websockets.py:open()] - Websocket Opened: ID: 1944063312, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 11:44:21,929 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 12:44:46,182 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-25 21:00:01,773 [websockets.py:on_close()] - Websocket Closed: ID: 1944063312 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 4.11
+2026-01-25 21:00:05,713 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-25 21:00:05,716 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.41ms
+2026-01-25 21:00:05,716 [websockets.py:open()] - Websocket Opened: ID: 1944489200, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 21:00:05,747 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 22:04:46,328 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-25 23:28:25,612 [websockets.py:on_close()] - Websocket Closed: ID: 1944489200 Close Code: None, Close Reason: None, Pong Time Elapsed: 8.34
+2026-01-25 23:28:26,987 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-25 23:28:26,990 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.34ms
+2026-01-25 23:28:26,991 [websockets.py:open()] - Websocket Opened: ID: 1945010576, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 23:28:27,019 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 23:28:27,142 [websockets.py:on_close()] - Websocket Closed: ID: 1945010576 Close Code: None, Close Reason: None, Pong Time Elapsed: 0.16
+2026-01-25 23:28:27,429 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 1.89ms
+2026-01-25 23:28:27,429 [websockets.py:open()] - Websocket Opened: ID: 1944124112, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 23:28:27,450 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 23:29:07,606 [websockets.py:write_to_socket()] - Websocket closed while writing: 1944124112
+2026-01-25 23:29:12,438 [websockets.py:on_close()] - Websocket Closed: ID: 1944124112 Close Code: None, Close Reason: None, Pong Time Elapsed: 24.98
+2026-01-25 23:43:06,298 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.243
+2026-01-25 23:43:06,300 [application.py:log_request()] - 101 GET /websocket (192.168.4.243) [_TRUSTED_USER_] 4.81ms
+2026-01-25 23:43:06,301 [websockets.py:open()] - Websocket Opened: ID: 1944063696, Proxied: True, User Agent: Dart/3.9 (dart:io), Host Name: ender3s1.local
+2026-01-25 23:43:26,891 [websockets.py:write_to_socket()] - Websocket closed while writing: 1944063696
+2026-01-25 23:43:31,308 [websockets.py:on_close()] - Websocket Closed: ID: 1944063696 Close Code: None, Close Reason: None, Pong Time Elapsed: 25.01
+2026-01-25 23:45:26,500 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.52ms
+2026-01-25 23:45:26,501 [websockets.py:open()] - Websocket Opened: ID: 1944082128, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 23:45:26,524 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 23:45:34,853 [websockets.py:on_close()] - Websocket Closed: ID: 1944082128 Close Code: None, Close Reason: None, Pong Time Elapsed: 8.36
+2026-01-25 23:45:34,871 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.72ms
+2026-01-25 23:45:34,871 [websockets.py:open()] - Websocket Opened: ID: 1944063344, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 23:45:34,890 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 23:46:24,922 [websockets.py:write_to_socket()] - Websocket closed while writing: 1944063344
+2026-01-25 23:46:29,884 [websockets.py:on_close()] - Websocket Closed: ID: 1944063344 Close Code: None, Close Reason: None, Pong Time Elapsed: 25.00
+2026-01-25 23:49:06,033 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.40ms
+2026-01-25 23:49:06,033 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 23:49:06,055 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-25 23:49:17,094 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 1.05
+2026-01-25 23:49:21,520 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.11ms
+2026-01-25 23:49:21,521 [websockets.py:open()] - Websocket Opened: ID: 1944538448, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-25 23:49:21,543 [file_manager.py:get_file_list()] - Updating File List <config>...

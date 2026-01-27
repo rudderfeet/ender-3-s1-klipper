@@ -1,0 +1,453 @@
+-------------------- Log Start | Mon Jan 26 05:44:46 2026 --------------------
+platform: Linux-6.12.47+rpt-rpi-v7-armv7l-with-glibc2.36
+data_path: /home/smccrory/printer_data
+is_default_data_path: False
+config_file: /home/smccrory/printer_data/config/moonraker.conf
+backup_config: /home/smccrory/printer_data/config/.moonraker.conf.bkp
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: False
+instance_uuid: 3ea322c82223402d9fc6a896dcccb0d4
+unix_socket_path: /home/smccrory/printer_data/comms/moonraker.sock
+structured_logging: False
+software_version: v0.9.3-140-gbac55c6
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/smccrory/printer_data/logs/moonraker.log
+python_version: 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]
+launch_args: /home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/moonraker.py -d /home/smccrory/printer_data
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/smccrory/printer_data/comms/klippy.sock
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.lan
+	*.local
+	*://localhost
+	*://localhost:*
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+
+[octoprint_compat]
+
+[history]
+
+[file_manager]
+enable_object_processing = True
+
+[update_manager]
+channel = dev
+refresh_interval = 168
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager klipper-macros]
+type = git_repo
+origin = https://github.com/jschuh/klipper-macros.git
+path = ~/printer_data/config/klipper-macros
+primary_branch = main
+is_system_service = False
+managed_services = klipper
+
+[update_manager mobileraker]
+type = git_repo
+path = ~/mobileraker_companion
+origin = https://github.com/Clon1998/mobileraker_companion.git
+primary_branch = main
+managed_services = mobileraker
+virtualenv = ~/mobileraker-env
+requirements = scripts/mobileraker-requirements.txt
+install_script = scripts/install.sh
+
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[timelapse]
+output_path = ~/printer_data/timelapse/
+frame_path = /tmp/timelapse/printer
+
+[power basement_lights]
+type = tplink_smartplug
+address = 192.168.4.48
+port = 9999
+off_when_shutdown = False
+on_when_job_queued = True
+locked_while_printing = False
+restart_klipper_when_powered = False
+bound_services = 
+
+#################################################################
+All Configuration Files:
+/home/smccrory/printer_data/config/moonraker.conf
+#################################################################
+Loading Sqlite database provider. Sqlite Version: 3.40.1
+Unsafe Shutdown Count: 14
+
+System Info:
+
+***python***
+  version: (3, 11, 2, 'final', 0)
+  version_string: 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: armv7l
+  cpu_desc: ARMv7 Processor rev 4 (v7l)
+  serial_number: 4ec05eff
+  hardware_desc: BCM2835
+  model: Raspberry Pi 3 Model B Plus Rev 1.3
+  total_memory: 943124
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SC32G
+  product_revision: 8.0
+  serial_number: ecdf1fc6
+  manufacturer_date: 10/2017
+  capacity: 29.7 GiB
+  total_bytes: 31914983424
+
+***distribution***
+  name: Raspbian GNU/Linux 12 (bookworm)
+  id: raspbian
+  version: 12
+  version_parts: {'major': '12', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bookworm
+  release_info: {}
+  kernel_version: 6.12.47+rpt-rpi-v7
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+  mobileraker
+Module libcamera unavailable, import failed
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'network-online.target', 'sysinit.target', '-.mount']
+**After=['-.mount', 'sysinit.target', 'systemd-journald.socket', 'basic.target', 'system.slice', 'network-online.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/smccrory/printer_data/systemd/moonraker.env
+**ExecStart=/home/smccrory/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=/home/smccrory/moonraker
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=smccrory
+CPU Throttled Flags: ['Previously Temperature Limited']
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'sysinit.target', '-.mount']
+**After=['basic.target', 'sysinit.target', 'system.slice', 'klipper-mcu.service', '-.mount', 'systemd-journald.socket', 'network-online.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/smccrory/printer_data/systemd/klipper.env
+**ExecStart=/home/smccrory/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/smccrory/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=smccrory
+Git Repo moonraker: Warnings detected:
+  Repo has untracked source files: ['moonraker/components/timelapse.py']
+Git Repo klipper: No warnings detected
+Git Repo mainsail-config: No warnings detected
+Git Repo crowsnest: No warnings detected
+Git Repo klipper-macros: No warnings detected
+Git Repo mobileraker: No warnings detected
+Git Repo timelapse: No warnings detected
+Klipper Version: v0.13.0-464-g48f0b3cad
+2026-01-26 00:44:46,367 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.243
+2026-01-26 00:49:46,368 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-26 02:43:58,330 [websockets.py:on_close()] - Websocket Closed: ID: 1944538448 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 4.91
+2026-01-26 02:44:15,053 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-26 02:44:15,055 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.81ms
+2026-01-26 02:44:15,056 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 02:44:15,082 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 02:47:51,433 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 6.29
+2026-01-26 03:44:46,411 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-26 08:00:25,929 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.243
+2026-01-26 08:00:25,932 [application.py:log_request()] - 101 GET /websocket (192.168.4.243) [_TRUSTED_USER_] 4.23ms
+2026-01-26 08:00:25,933 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: True, User Agent: Dart/3.9 (dart:io), Host Name: ender3s1.local
+2026-01-26 08:00:46,178 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: None, Close Reason: None, Pong Time Elapsed: 20.25
+2026-01-26 08:13:13,097 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-26 08:13:13,102 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 6.89ms
+2026-01-26 08:13:13,103 [websockets.py:open()] - Websocket Opened: ID: 1944820144, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 08:13:13,129 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 09:04:46,490 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.243
+2026-01-26 09:13:33,251 [websockets.py:on_close()] - Websocket Closed: ID: 1944820144 Close Code: None, Close Reason: None, Pong Time Elapsed: 9.52
+2026-01-26 09:13:34,860 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 2.99ms
+2026-01-26 09:13:34,861 [websockets.py:open()] - Websocket Opened: ID: 1944489200, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 09:13:34,883 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 09:13:35,034 [websockets.py:on_close()] - Websocket Closed: ID: 1944489200 Close Code: None, Close Reason: None, Pong Time Elapsed: 0.18
+2026-01-26 09:13:35,227 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 2.09ms
+2026-01-26 09:13:35,227 [websockets.py:open()] - Websocket Opened: ID: 1944943664, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 09:13:35,271 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 09:14:15,307 [websockets.py:write_to_socket()] - Websocket closed while writing: 1944943664
+2026-01-26 09:14:20,236 [websockets.py:on_close()] - Websocket Closed: ID: 1944943664 Close Code: None, Close Reason: None, Pong Time Elapsed: 24.99
+2026-01-26 09:32:39,082 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.71ms
+2026-01-26 09:32:39,083 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 09:32:39,116 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 09:32:40,098 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.01ms
+2026-01-26 09:32:40,099 [websockets.py:open()] - Websocket Opened: ID: 1944489552, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 09:32:40,126 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 10:34:46,513 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-26 14:16:22,438 [websockets.py:on_close()] - Websocket Closed: ID: 1944489552 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 9.35
+2026-01-26 14:16:22,441 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 0.40
+2026-01-26 14:16:30,716 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-26 14:16:30,719 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.69ms
+2026-01-26 14:16:30,720 [websockets.py:open()] - Websocket Opened: ID: 1944107952, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 14:16:30,744 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 14:18:23,339 [websockets.py:on_close()] - Websocket Closed: ID: 1944107952 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 2.59
+2026-01-26 14:18:27,327 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.44ms
+2026-01-26 14:18:27,327 [websockets.py:open()] - Websocket Opened: ID: 1944987024, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 14:18:27,354 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 15:19:46,587 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-26 16:34:12,458 [websockets.py:on_close()] - Websocket Closed: ID: 1944987024 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 3.69
+2026-01-26 16:34:16,397 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-26 16:34:16,399 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.45ms
+2026-01-26 16:34:16,400 [websockets.py:open()] - Websocket Opened: ID: 1944124368, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 16:34:16,423 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 16:38:42,995 [websockets.py:on_close()] - Websocket Closed: ID: 1944124368 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 6.53
+2026-01-26 17:34:46,626 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.4.197
+2026-01-26 18:51:38,838 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.197
+2026-01-26 18:51:38,841 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 4.60ms
+2026-01-26 18:51:38,841 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 18:51:38,865 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 18:53:15,726 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 6.86
+2026-01-26 18:53:19,095 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.57ms
+2026-01-26 18:53:19,096 [websockets.py:open()] - Websocket Opened: ID: 1944114320, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 18:53:19,133 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 19:11:20,286 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 2.09ms
+2026-01-26 19:11:20,286 [websockets.py:open()] - Websocket Opened: ID: 1944062576, Proxied: True, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 19:11:20,299 [websockets.py:_handle_identify()] - Websocket 1944062576 Client Identified - Name: mainsail, Version: 2.17.0, Type: web
+2026-01-26 19:11:23,359 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.93ms
+2026-01-26 19:11:23,360 [websockets.py:open()] - Websocket Opened: ID: 1944106896, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 19:11:23,414 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 19:11:41,575 [websockets.py:on_close()] - Websocket Closed: ID: 1944062576 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 1.27
+2026-01-26 19:11:42,073 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 2.04ms
+2026-01-26 19:11:42,073 [websockets.py:open()] - Websocket Opened: ID: 1945005488, Proxied: True, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 19:11:42,081 [websockets.py:_handle_identify()] - Websocket 1945005488 Client Identified - Name: mainsail, Version: 2.17.0, Type: web
+2026-01-26 19:11:42,801 [websockets.py:on_close()] - Websocket Closed: ID: 1944106896 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 9.43
+2026-01-26 19:13:36,627 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7LB8IC0nwheIRYQS
+2026-01-26 19:13:36,655 [application.py:post()] - Processing Uploaded File: printer.cfg
+2026-01-26 19:13:36,672 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 45.48ms
+2026-01-26 19:15:12,972 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryi7NMCBbkWoGm1GUF
+2026-01-26 19:15:12,996 [application.py:post()] - Processing Uploaded File: overrides_steel_06.cfg
+2026-01-26 19:15:13,012 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 40.37ms
+2026-01-26 19:15:16,249 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryBq090mAC6Geu67tF
+2026-01-26 19:15:16,273 [application.py:post()] - Processing Uploaded File: overrides_steel_06.cfg
+2026-01-26 19:15:16,289 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 42.24ms
+2026-01-26 19:15:16,346 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2026-01-26 19:15:17,865 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2026-01-26 19:16:01,047 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2026-01-26 19:16:01,048 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2026-01-26 19:16:01,298 [job_state.py:_handle_started()] - Job state initialized: standby
+2026-01-26 19:16:01,575 [klippy_connection.py:_check_ready()] - Klippy ready
+2026-01-26 19:16:01,610 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 19:16:02,414 [data_store.py:_init_sensors()] - Configuring available sensors: ['temperature_sensor enclosure_temp', 'heater_bed', 'temperature_sensor Board_MCU', 'temperature_sensor Raspberry_Pi', 'extruder']
+2026-01-26 19:24:38,214 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 2.93ms
+2026-01-26 19:24:38,214 [websockets.py:open()] - Websocket Opened: ID: 1935576304, Proxied: True, User Agent: PrusaSlicer/2.9.4 (OSX), Host Name: ender3s1.local
+2026-01-26 19:24:38,224 [websockets.py:_handle_identify()] - Websocket 1935576304 Client Identified - Name: mainsail, Version: 2.17.0, Type: web
+2026-01-26 19:25:30,519 [websockets.py:on_close()] - Websocket Closed: ID: 1935576304 Close Code: None, Close Reason: None, Pong Time Elapsed: 2.28
+2026-01-26 19:58:21,040 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------13811b77eb883762
+2026-01-26 19:58:21,084 [application.py:post()] - Processing Uploaded File: Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 19:58:21,564 [shell_command.py:pipe_data_received()] - INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+
+2026-01-26 19:58:21,567 [shell_command.py:pipe_data_received()] - INFO:metadata:Performing Object Processing on file: Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode, sliced by PrusaSlicer
+
+2026-01-26 19:58:21,750 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-1lj8sqc3.json) successfully finished
+2026-01-26 19:58:21,756 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 716.96ms
+2026-01-26 20:04:10,890 [klippy_connection.py:_process_status_update()] - Klippy has shutdown
+2026-01-26 20:04:10,898 [proc_stats.py:_handle_shutdown()] - 
+Moonraker System Usage Statistics:
+System Time: 1769475821.011380, Usage: 2.14%, Memory: 40120 kB
+System Time: 1769475822.008710, Usage: 2.11%, Memory: 40120 kB
+System Time: 1769475823.009811, Usage: 2.34%, Memory: 40120 kB
+System Time: 1769475824.010801, Usage: 2.04%, Memory: 40120 kB
+System Time: 1769475825.012530, Usage: 1.89%, Memory: 40120 kB
+System Time: 1769475826.013626, Usage: 2.19%, Memory: 40120 kB
+System Time: 1769475827.017305, Usage: 2.14%, Memory: 40120 kB
+System Time: 1769475828.014760, Usage: 3.44%, Memory: 40120 kB
+System Time: 1769475829.015837, Usage: 2.06%, Memory: 40120 kB
+System Time: 1769475830.017212, Usage: 2.07%, Memory: 40120 kB
+System Time: 1769475831.020448, Usage: 1.96%, Memory: 40120 kB
+System Time: 1769475832.021445, Usage: 2.45%, Memory: 40120 kB
+System Time: 1769475833.020612, Usage: 2.57%, Memory: 40120 kB
+System Time: 1769475834.021525, Usage: 2.23%, Memory: 40120 kB
+System Time: 1769475835.022462, Usage: 2.13%, Memory: 40120 kB
+System Time: 1769475836.024776, Usage: 1.99%, Memory: 40120 kB
+System Time: 1769475837.025665, Usage: 1.95%, Memory: 40120 kB
+System Time: 1769475838.026773, Usage: 2.81%, Memory: 40120 kB
+System Time: 1769475839.027917, Usage: 2.26%, Memory: 40120 kB
+System Time: 1769475840.029710, Usage: 2.38%, Memory: 40120 kB
+System Time: 1769475841.030004, Usage: 2.27%, Memory: 40120 kB
+System Time: 1769475842.031088, Usage: 2.02%, Memory: 40120 kB
+System Time: 1769475843.031785, Usage: 2.17%, Memory: 40120 kB
+System Time: 1769475844.033112, Usage: 2.24%, Memory: 40120 kB
+System Time: 1769475845.034127, Usage: 2.13%, Memory: 40120 kB
+System Time: 1769475846.035954, Usage: 2.11%, Memory: 40120 kB
+System Time: 1769475847.036417, Usage: 1.93%, Memory: 40120 kB
+System Time: 1769475848.039842, Usage: 2.73%, Memory: 40120 kB
+System Time: 1769475849.041867, Usage: 2.62%, Memory: 40120 kB
+System Time: 1769475850.044793, Usage: 2.89%, Memory: 40120 kB
+CPU Temperature: 59.072
+2026-01-26 20:04:10,899 [proc_stats.py:_handle_shutdown()] - Throttled Flags: Previously Temperature Limited
+2026-01-26 20:09:05,684 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2026-01-26 20:09:06,948 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2026-01-26 20:09:15,115 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2026-01-26 20:09:15,117 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2026-01-26 20:09:15,367 [job_state.py:_handle_started()] - Job state initialized: standby
+2026-01-26 20:09:15,646 [klippy_connection.py:_check_ready()] - Klippy ready
+2026-01-26 20:09:15,679 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 20:09:16,431 [data_store.py:_init_sensors()] - Configuring available sensors: ['temperature_sensor enclosure_temp', 'heater_bed', 'temperature_sensor Board_MCU', 'temperature_sensor Raspberry_Pi', 'extruder']
+2026-01-26 20:19:21,526 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2026-01-26 20:24:52,043 [klippy_apis.py:start_print()] - Requesting Job Start, filename = Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 20:24:52,223 [job_state.py:_send_job_event()] - Job Started: Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:03:05,236 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------e64c32b7930212fe
+2026-01-26 21:03:05,268 [application.py:post()] - Processing Uploaded File: Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:03:05,768 [shell_command.py:pipe_data_received()] - INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+
+2026-01-26 21:03:05,771 [shell_command.py:pipe_data_received()] - INFO:metadata:Performing Object Processing on file: Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode, sliced by PrusaSlicer
+
+2026-01-26 21:03:05,937 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-qbe4c1nu.json) successfully finished
+2026-01-26 21:03:05,939 [klippy_apis.py:start_print()] - Requesting Job Start, filename = Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:03:05,965 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 729.99ms
+2026-01-26 21:03:06,095 [job_state.py:_send_job_event()] - Job Started: Cube - SainSmart CF Nylon 0.6mm_8m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:12:19,940 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------6101e8273baa7ced
+2026-01-26 21:12:20,466 [application.py:post()] - Processing Uploaded File: Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 21:12:20,980 [shell_command.py:pipe_data_received()] - INFO:metadata:File 'Califlower-100mm-S1_PA-CF.gcode' currently supports cancellation, processing aborted
+
+2026-01-26 21:12:21,195 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-udh5moo1.json) successfully finished
+2026-01-26 21:12:21,201 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 1261.76ms
+2026-01-26 21:44:43,675 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------ac77419f275a1256
+2026-01-26 21:44:43,712 [application.py:post()] - Processing Uploaded File: Cube - SainSmart CF Nylon 0.6mm_7m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:44:44,193 [shell_command.py:pipe_data_received()] - INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+
+2026-01-26 21:44:44,196 [shell_command.py:pipe_data_received()] - INFO:metadata:Performing Object Processing on file: Cube - SainSmart CF Nylon 0.6mm_7m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode, sliced by PrusaSlicer
+
+2026-01-26 21:44:44,368 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-sfm78_g0.json) successfully finished
+2026-01-26 21:44:44,370 [klippy_apis.py:start_print()] - Requesting Job Start, filename = Cube - SainSmart CF Nylon 0.6mm_7m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:44:44,395 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 721.07ms
+2026-01-26 21:44:44,575 [job_state.py:_send_job_event()] - Job Started: Cube - SainSmart CF Nylon 0.6mm_7m_0.30mm_285C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 21:52:38,350 [websockets.py:on_close()] - Websocket Closed: ID: 1944114320 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 7.66
+2026-01-26 22:13:18,535 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------cf9d048db45bd660
+2026-01-26 22:13:19,777 [application.py:post()] - Processing Uploaded File: Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 22:13:20,396 [shell_command.py:pipe_data_received()] - INFO:metadata:File 'Califlower-100mm-S1_PA-CF.gcode' currently supports cancellation, processing aborted
+
+2026-01-26 22:13:20,603 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-e_pd1ayk.json) successfully finished
+2026-01-26 22:13:20,605 [klippy_apis.py:start_print()] - Requesting Job Start, filename = Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 22:13:20,628 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 2093.70ms
+2026-01-26 22:13:20,772 [job_state.py:_send_job_event()] - Job Started: Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 22:22:49,661 [klippy_apis.py:pause_print()] - Requesting job pause...
+2026-01-26 22:22:50,566 [klippy_apis.py:cancel_print()] - Requesting job cancel...
+2026-01-26 22:30:17,353 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------db5aad058c12f946
+2026-01-26 22:30:17,828 [application.py:post()] - Processing Uploaded File: Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 22:30:18,636 [shell_command.py:pipe_data_received()] - INFO:metadata:File 'Califlower-100mm-S1_PA-CF.gcode' currently supports cancellation, processing aborted
+
+2026-01-26 22:30:18,842 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-em_jez2b.json) successfully finished
+2026-01-26 22:30:18,845 [klippy_apis.py:start_print()] - Requesting Job Start, filename = Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 22:30:18,868 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 1515.39ms
+2026-01-26 22:30:18,937 [job_state.py:_send_job_event()] - Job Started: Califlower-100mm-S1_PA-CF.gcode
+2026-01-26 22:32:29,647 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.4.40
+2026-01-26 22:32:29,648 [application.py:log_request()] - 101 GET /websocket (192.168.4.40) [_TRUSTED_USER_] 2.65ms
+2026-01-26 22:32:29,649 [websockets.py:open()] - Websocket Opened: ID: 1944115984, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0, Host Name: ender3s1.local
+2026-01-26 22:32:29,679 [websockets.py:_handle_identify()] - Websocket 1944115984 Client Identified - Name: mainsail, Version: 2.17.0, Type: web
+2026-01-26 22:32:42,433 [application.py:log_request()] - 101 GET /websocket (192.168.4.197) [_TRUSTED_USER_] 3.62ms
+2026-01-26 22:32:42,434 [websockets.py:open()] - Websocket Opened: ID: 1944541264, Proxied: False, User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36, Host Name: ender3s1.local
+2026-01-26 22:32:42,466 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 22:33:20,717 [application.py:log_request()] - 101 GET /websocket (192.168.4.40) [_TRUSTED_USER_] 3.97ms
+2026-01-26 22:33:20,718 [websockets.py:open()] - Websocket Opened: ID: 1944558800, Proxied: False, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0, Host Name: ender3s1.local
+2026-01-26 22:33:20,816 [file_manager.py:get_file_list()] - Updating File List <config>...
+2026-01-26 22:34:23,576 [websockets.py:on_close()] - Websocket Closed: ID: 1944558800 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 2.81
+2026-01-26 22:34:46,463 [websockets.py:on_close()] - Websocket Closed: ID: 1944541264 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 3.99
+2026-01-26 22:47:57,264 [klippy_apis.py:pause_print()] - Requesting job pause...
+2026-01-26 22:47:58,396 [klippy_apis.py:cancel_print()] - Requesting job cancel...
+2026-01-26 23:04:33,177 [application.py:prepare()] - Upload Request Received from 192.168.4.197
+Content-Type: multipart/form-data; boundary=------------------------7dec087a7f37ef65
+2026-01-26 23:04:33,825 [application.py:post()] - Processing Uploaded File: Califlower-100mm-S1_PA-CF_1h11m_0.30mm_265C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 23:04:34,391 [shell_command.py:pipe_data_received()] - INFO:prepropress_cancellation:Shapely not found, complex hulls disabled
+
+2026-01-26 23:04:34,394 [shell_command.py:pipe_data_received()] - INFO:metadata:Performing Object Processing on file: Califlower-100mm-S1_PA-CF_1h11m_0.30mm_265C_NYLON_ENDER3S1PRO.gcode, sliced by PrusaSlicer
+
+2026-01-26 23:04:37,589 [shell_command.py:_check_proc_success()] - Command (/home/smccrory/moonraker-env/bin/python /home/smccrory/moonraker/moonraker/components/file_manager/metadata.py -c /tmp/metacfg-74a7j7fm.json) successfully finished
+2026-01-26 23:04:37,592 [klippy_apis.py:start_print()] - Requesting Job Start, filename = Califlower-100mm-S1_PA-CF_1h11m_0.30mm_265C_NYLON_ENDER3S1PRO.gcode
+2026-01-26 23:04:37,620 [application.py:log_request()] - 201 POST /server/files/upload (192.168.4.197) [_TRUSTED_USER_] 4444.34ms
+2026-01-26 23:04:37,715 [job_state.py:_send_job_event()] - Job Started: Califlower-100mm-S1_PA-CF_1h11m_0.30mm_265C_NYLON_ENDER3S1PRO.gcode
